@@ -4,11 +4,13 @@ FROM node
 # 앞으로 명령어는 /app 에서 실행
 WORKDIR /app
 
+COPY package.json /app
+
+RUN npm install
+
 # 첫번째 . - 복사 폴더 경로, 두번째 . - 저장 폴더 경로
 # Dockerfile과 동일한 폴더에 있는 모든 파일과 하위 폴더가 컨테이너 내부의 app 폴더에 복사됨. 
 COPY . ./
-
-RUN npm install
 
 # 컨테이너의 포트만 열어둔 상태이기 때문에 로컬 머신에도 특정 포트 열어둠.
 EXPOSE 81
