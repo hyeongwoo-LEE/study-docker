@@ -8,6 +8,7 @@ COPY package.json /app
 
 RUN npm install
 
+
 # 첫번째 . - 복사 폴더 경로, 두번째 . - 저장 폴더 경로
 # Dockerfile과 동일한 폴더에 있는 모든 파일과 하위 폴더가 컨테이너 내부의 app 폴더에 복사됨. 
 COPY . ./
