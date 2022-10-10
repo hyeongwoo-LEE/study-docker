@@ -17,4 +17,4 @@ COPY . ./
 EXPOSE 81
 
 # CMD : 이미지가 생성될 때 실행되지 않고 이미지를 기반으로 컨테이너가 시작될 때 실행됨.
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
