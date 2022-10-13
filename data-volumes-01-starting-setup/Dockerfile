@@ -8,7 +8,11 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+ARG DEFAULT_PORT=81
+
+ENV PORT $DEFAULT_PORT
+
+EXPOSE $PORT
 
 # 익명 볼륨 경로 지정
 # VOLUME [ "/app/feedback" ]
