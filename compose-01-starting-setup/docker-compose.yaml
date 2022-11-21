@@ -20,7 +20,7 @@ services:
     #  dockerfile: Dockerfile-dev
 
     ports:
-      - '80:80'
+      - '81:81'
     volumes:
       - logs:/app/logs
       - ./backend:/app #bind mounts backend - 폴더에 있는 모든 것을 컨테이너 내부의 app 폴더와 공유한다.
@@ -33,7 +33,16 @@ services:
     depends_on: 
       - mongodb
 
-  #frontend:
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
 
 # 도커가 service를 위해 생성해야 하는 명명된 볼륨을 인식하기 위한 구문. - 다른 컨테이너에서도 같은 볼륨을 사용할 수 있음. bind mounts나 익명 볼륨은 작성할 필요가 없다.
 volumes:
