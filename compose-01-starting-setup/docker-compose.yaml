@@ -4,6 +4,7 @@ services:
     image: 'mongo' # 도커 컴포즈는 detached 모드, --rm 이 디폴트 ? detach가 디폴트라며...
     volumes: 
       - data:/data/db
+    container_name: mongodb
     #environment:
     #  MONGO_INITDB_ROOT_USERNAME : max
     #  MONGO_INITDB_ROOT_PASSWORD : secret
