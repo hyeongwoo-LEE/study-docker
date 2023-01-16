@@ -1,0 +1,23 @@
+FROM node:14-alpine as build
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+#최적화된 파일 생성 후엔 node를 사용하지 않음 -> 파일만 가지고 다른 이미지로 전환
+RUN npm run build
+
+#다른 베이스 이미지로 전환
+FROM nginx:stable-alpine
+
+#복사하려는 스테이지 이름 지정 - build 스테이지에서 최종 콘텐츠 복사 - /app/build 복사 대상 경로
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+
